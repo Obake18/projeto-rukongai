@@ -14,6 +14,10 @@ config/name="Projeto Rukongai"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+YoukaiManager="*uid://t0rmmeb5j52d"
+
 [input]
 
 move_foward={
