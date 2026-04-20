@@ -32,7 +32,11 @@ func spawn_ghosts():
 		add_child(ghost)
 "
 
-[node name="Main" type="Node3D" unique_id=707197640]
+[sub_resource type="Environment" id="Environment_hyk8p"]
+fog_enabled = true
+fog_density = 0.05
+
+[node name="Main" type="Node3D" unique_id=707197640 groups=["player"]]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1490956175]
 
@@ -45,3 +49,6 @@ mesh = SubResource("PlaneMesh_hyk8p")
 [node name="YoukaiSpawner" type="Node3D" parent="." unique_id=854957675]
 script = SubResource("GDScript_iuonh")
 ghost_scene = ExtResource("1_hyk8p")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=243996573]
+environment = SubResource("Environment_hyk8p")
