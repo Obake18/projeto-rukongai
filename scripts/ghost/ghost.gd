@@ -29,7 +29,7 @@ func start_encounter():
 	get_tree().paused = true
 
 	# 🔥 instancia batalha
-	var battle = load("res://scenes/battle.tscn").instantiate()
+	var battle = load("scenes\\screens\\battle.tscn").instantiate()
 	battle.set_youkai(youkai_data)
 
 	# 🔥 adiciona na tela

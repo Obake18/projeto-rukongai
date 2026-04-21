@@ -19,6 +19,7 @@ mesh = SubResource("SphereMesh_jlo78")
 shape = SubResource("SphereShape3D_jlo78")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1009019448]
+collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2088128771]
 shape = SubResource("SphereShape3D_gf5mu")

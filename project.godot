@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 YoukaiManager="*uid://t0rmmeb5j52d"
 
+[global_group]
+
+player="O player e suas propriedades"
+
 [input]
 
 move_forward={
