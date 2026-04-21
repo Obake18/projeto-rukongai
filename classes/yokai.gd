@@ -1,14 +1,19 @@
 extends Resource
 class_name Youkai
 
-var name: String
-var description: String
-var abilities: Array
-var natureza: String
+# =========================
+# PROPRIEDADES (VISÍVEIS NO INSPECTOR)
+# =========================
+@export var name: String
+@export var description: String
+@export var abilities: Array[String]
+@export var natureza: String
 
-func _init(_name: String, _description: String, _abilities: Array, _natureza: String):
-    name = _name
-    description = _description
-
-    abilities = _abilities
-    natureza = _natureza
+# =========================
+# CONSTRUTOR
+# =========================
+func _init(_name: String = "", _description: String = "", _abilities: Array = [], _natureza: String = ""):
+	name = _name
+	description = _description
+	abilities = _abilities
+	natureza = _natureza
