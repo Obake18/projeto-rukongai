@@ -6,13 +6,13 @@ extends CharacterBody3D
 @export var speed := 6.0
 @export var mouse_sensitivity := 0.002
 
-# Mobile
-@export var mobile_sensitivity := 2.0
-@export var vertical_sensitivity := 0.6
+# Mobile (AJUSTADO)
+@export var mobile_sensitivity := 1.5
+@export var vertical_sensitivity := 0.55
 @export var camera_smooth := 6.0
-@export var max_look_speed := 1.2
+@export var max_look_speed := 1.0
 
-# Step system
+# Step system 
 @export var step_threshold := 1.8
 @export var step_cooldown := 0.4
 @export var step_force := 6.0
@@ -76,7 +76,7 @@ func _physics_process(delta):
 	else:
 		handle_pc(delta)
 
-	# freio
+	# freio natural
 	velocity = velocity.move_toward(Vector3.ZERO, friction * delta)
 
 	move_and_slide()
@@ -109,7 +109,7 @@ func handle_mobile(delta):
 	var raw_gyro = Input.get_gyroscope()
 
 	# =========================
-	# CALIBRAÇÃO AUTOMÁTICA
+	# CALIBRAÇÃO
 	# =========================
 	if not calibrated:
 		base_accel = raw_accel
@@ -130,18 +130,28 @@ func handle_mobile(delta):
 	smooth_gyro.y = apply_deadzone(smooth_gyro.y)
 
 	# =========================
-	# ROTAÇÃO (ESTÁVEL)
+	# LIMITES
 	# =========================
 	var gyro_x = clamp(smooth_gyro.x, -max_look_speed, max_look_speed)
 	var gyro_y = clamp(smooth_gyro.y, -max_look_speed, max_look_speed)
 
-	# horizontal
-	if abs(gyro_y) > 0:
-		rotate_y(-gyro_y * mobile_sensitivity)
+	# =========================
+	# CURVA DE RESPOSTA (🔥 importante)
+	# =========================
+	var response_x = pow(abs(gyro_x), 1.5) * sign(gyro_x)
+	var response_y = pow(abs(gyro_y), 1.5) * sign(gyro_y)
 
-	# vertical (suavizado)
-	if abs(gyro_x) > 0:
-		target_rotation_x -= gyro_x * vertical_sensitivity
+	# =========================
+	# ROTAÇÃO HORIZONTAL
+	# =========================
+	if abs(response_y) > 0.05:
+		rotate_y(-response_y * mobile_sensitivity)
+
+	# =========================
+	# ROTAÇÃO VERTICAL (SUAVE)
+	# =========================
+	if abs(response_x) > 0.05:
+		target_rotation_x -= response_x * vertical_sensitivity
 		target_rotation_x = clamp(target_rotation_x, -1.2, 1.2)
 
 	rotation_x = lerp(rotation_x, target_rotation_x, camera_smooth * delta)
@@ -169,13 +179,16 @@ func apply_deadzone(value: float) -> float:
 func detect_step(accel: Vector3) -> bool:
 	var magnitude = accel.length()
 
+	# evita movimento parado falso
+	if magnitude < 0.8:
+		return false
+
 	var delta = magnitude - prev_magnitude
 	prev_magnitude = magnitude
 
 	var now = Time.get_ticks_msec() / 1000.0
 
-	# ignora ruído pequeno
-	if abs(delta) < 0.3:
+	if abs(delta) < 0.25:
 		return false
 
 	if delta > step_threshold and (now - last_step_time) > step_cooldown:
@@ -191,11 +204,11 @@ func detect_step(accel: Vector3) -> bool:
 # =========================
 func move_step():
 	var forward = -transform.basis.z
-	velocity = forward * step_force
+	velocity += forward * step_force  # 🔥 impulso acumulado
 
 
 # =========================
-# 🔥 FUNÇÃO EXTRA IMPORTANTE
+# RECALIBRAR
 # =========================
 func recalibrate_sensors():
 	print("📱 Recalibrando sensores...")
