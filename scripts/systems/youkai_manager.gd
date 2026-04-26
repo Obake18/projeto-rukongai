@@ -3,7 +3,7 @@ extends Node
 # =========================
 # REFERÊNCIA DA CLASSE
 # =========================
-const Youkai = preload("res://classes/yokai.gd")
+#const Youkai = preload("res://classes/youkai.gd")
 
 # =========================
 # BANCO DE DADOS
@@ -25,72 +25,105 @@ func _ready():
 func create_youkai():
 	youkais.clear()
 
-	# =========================
-	# BASE
-	# =========================
-	add("Amari",
-		"Mulher vestida de azul. Evite-a o quanto puder.",
-		["Corte", "Velocidade"],
-		"Vingativa"
-	)
+	# Amari
+	add("Amari", "Mulher vestida de azul...", ["Corte", "Velocidade"], "Vingativa")
+	var amari = youkais[-1]   # pega o último adicionado
+	amari.hp = 20
+	amari.attack_damage_min = 2
+	amari.attack_damage_max = 6
+	amari.behavior_type = "sneaky"
+	amari.move_speed = 2.5
+	amari.detection_range = 6.0
+	amari.puzzle_type = "charada"
+	amari.puzzle_question = "O que nunca pergunta mas sempre responde?"
+	amari.puzzle_answer = "telefone"
+	amari.reward_item = "corda"
 
-	add("HenoHeno",
-		"Figura semelhante a um papel com rosto desenhado. Engana vítimas.",
-		["Engano", "Furtividade"],
-		"Enganadora"
-	)
+	# HenoHeno
+	add("HenoHeno", "Figura semelhante a um papel...", ["Engano", "Furtividade"], "Enganadora")
+	var heno = youkais[-1]
+	heno.hp = 12
+	heno.attack_damage_min = 1
+	heno.attack_damage_max = 3
+	heno.behavior_type = "patrol"
+	heno.puzzle_type = "charada"
+	heno.puzzle_question = "Quanto mais você tira, maior fica. O que é?"
+	heno.puzzle_answer = "buraco"
 
-	add("Maria",
-		"Espírito pacífico. Aceite seus presentes, mas mantenha distância.",
-		["Calma", "Furtividade"],
-		"Pacífica"
-	)
+	# Maria (Pacífica)
+	add("Maria", "Espírito pacífico...", ["Calma", "Furtividade"], "Pacífica")
+	var maria = youkais[-1]
+	maria.hp = 10
+	maria.attack_damage_min = 1
+	maria.attack_damage_max = 2
+	maria.behavior_type = "static"
+	maria.detection_range = 2.0
 
-	# =========================
-	# EXPANSÃO (TESTES)
-	# =========================
-	add("Oni",
-		"Força bruta e comportamento hostil.",
-		["Força", "Resistência"],
-		"Hostil"
-	)
+	# Oni
+	add("Oni", "Força bruta...", ["Força", "Resistência"], "Hostil")
+	var oni = youkais[-1]
+	oni.hp = 30
+	oni.attack_damage_min = 4
+	oni.attack_damage_max = 9
+	oni.behavior_type = "chase"
+	oni.move_speed = 4.0
+	oni.detection_range = 10.0
+	oni.puzzle_type = "item"
+	oni.puzzle_question = "Ofereça uma fruta."
+	oni.puzzle_answer = "maçã"
+	oni.reward_item = "chave antiga"
 
-	add("Kage",
-		"Sombra viva que observa silenciosamente.",
-		["Furtividade", "Velocidade"],
-		"Agressiva"
-	)
+	# Kage
+	add("Kage", "Sombra viva...", ["Furtividade", "Velocidade"], "Agressiva")
+	var kage = youkais[-1]
+	kage.hp = 18
+	kage.attack_damage_min = 2
+	kage.attack_damage_max = 5
+	kage.behavior_type = "sneaky"
+	kage.sneak_speed = 1.5
 
-	add("Yurei",
-		"Alma presa ao mundo dos vivos.",
-		["Medo", "Velocidade"],
-		"Vingativa"
-	)
+	# Yurei
+	add("Yurei", "Alma presa...", ["Medo", "Velocidade"], "Vingativa")
+	var yurei = youkais[-1]
+	yurei.hp = 22
+	yurei.attack_damage_min = 3
+	yurei.attack_damage_max = 7
+	yurei.behavior_type = "static"
 
-	add("Noppera-bo",
-		"Ser sem rosto que causa pânico.",
-		["Engano", "Medo"],
-		"Enganadora"
-	)
+	# Noppera-bo
+	add("Noppera-bo", "Ser sem rosto...", ["Engano", "Medo"], "Enganadora")
+	var noppera = youkais[-1]
+	noppera.hp = 16
+	noppera.attack_damage_min = 2
+	noppera.attack_damage_max = 4
+	noppera.behavior_type = "patrol"
 
-	add("Kodama",
-		"Espírito da floresta.",
-		["Calma", "Engano"],
-		"Neutra"
-	)
+	# Kodama
+	add("Kodama", "Espírito da floresta...", ["Calma", "Engano"], "Neutra")
+	var kodama = youkais[-1]
+	kodama.hp = 12
+	kodama.attack_damage_min = 1
+	kodama.attack_damage_max = 3
+	kodama.behavior_type = "patrol"
 
-	add("Tsuchigumo",
-		"Criatura semelhante a uma aranha gigante.",
-		["Força", "Veneno"],
-		"Hostil"
-	)
+	# Tsuchigumo
+	add("Tsuchigumo", "Criatura aranha...", ["Força", "Veneno"], "Hostil")
+	var tsuchi = youkais[-1]
+	tsuchi.hp = 35
+	tsuchi.attack_damage_min = 5
+	tsuchi.attack_damage_max = 10
+	tsuchi.behavior_type = "chase"
+	tsuchi.move_speed = 5.0
+	tsuchi.detection_range = 12.0
+	tsuchi.puzzle_type = "item"
+	tsuchi.puzzle_answer = "tocha"
 
 
 # =========================
 # FUNÇÃO AUXILIAR
 # =========================
-func add(name: String, desc: String, hab: Array, nat: String):
-	var y = Youkai.new(name, desc, hab, nat)
+func add(_name: String, desc: String, hab: Array[String], nat: String):
+	var y = Youkai.new(_name, desc, hab, nat)
 	youkais.append(y)
 
 

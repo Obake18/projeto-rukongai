@@ -8,20 +8,20 @@ extends CharacterBody3D
 
 # Mobile
 @export var mobile_sensitivity := 2.0
-@export var vertical_sensitivity := 1.0
-@export var camera_smooth := 8.0
-@export var max_look_speed := 2.0
+@export var vertical_sensitivity := 0.6
+@export var camera_smooth := 6.0
+@export var max_look_speed := 1.2
 
 # Step system
-@export var step_threshold := 2.5
+@export var step_threshold := 1.8
 @export var step_cooldown := 0.4
 @export var step_force := 6.0
 @export var friction := 12.0
 
 # Sensor filtering
-@export var accel_smoothing := 0.1
-@export var gyro_smoothing := 0.1
-@export var deadzone := 0.2
+@export var accel_smoothing := 0.2
+@export var gyro_smoothing := 0.15
+@export var deadzone := 0.15
 
 # =========================
 # VARIÁVEIS
@@ -85,7 +85,7 @@ func _physics_process(delta):
 # =========================
 # PC
 # =========================
-func handle_pc(delta):
+func handle_pc(_delta):
 	var direction = Vector3.ZERO
 
 	if Input.is_action_pressed("move_forward"):
