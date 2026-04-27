@@ -8,7 +8,7 @@ extends CharacterBody3D
 
 # Mobile (AJUSTADO)
 @export var mobile_sensitivity := 1.5
-@export var vertical_sensitivity := 0.55
+@export var vertical_sensitivity := 0.45
 @export var camera_smooth := 6.0
 @export var max_look_speed := 1.0
 
