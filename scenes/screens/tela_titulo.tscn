@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bwqof1x0ytdm7"]
+
+[node name="TelaTitulo" type="Control" unique_id=851853340]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="fundo" type="ColorRect" parent="." unique_id=1206644000]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 17.0
+offset_right = 307.0
+offset_bottom = 57.0
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1147360900]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=375486463]
+layout_mode = 2
+
+[node name="logo" type="TextureRect" parent="CenterContainer/VBoxContainer" unique_id=83261956]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=233948100]
+layout_mode = 2
+
+[node name="botoes" type="VBoxContainer" parent="CenterContainer" unique_id=1174828579]
+layout_mode = 2
+
+[node name="start" type="Button" parent="CenterContainer/botoes" unique_id=1855675787]
+layout_mode = 2
+
+[node name="opcoes" type="Button" parent="CenterContainer/botoes" unique_id=510502148]
+layout_mode = 2
+
+[node name="creditos" type="Button" parent="CenterContainer/botoes" unique_id=174607398]
+layout_mode = 2
+
+[node name="sair" type="Button" parent="CenterContainer/botoes" unique_id=790429489]
+layout_mode = 2
