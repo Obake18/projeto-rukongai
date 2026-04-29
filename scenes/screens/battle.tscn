@@ -2,7 +2,108 @@
 
 [ext_resource type="Script" uid="uid://cdgde517fxkpq" path="res://scripts/screens/battle/battle.gd" id="1_kvrgq"]
 
-[node name="battle" type="Control" unique_id=196438492]
+[sub_resource type="LabelSettings" id="LabelSettings_kvrgq"]
+
+[node name="battle" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_kvrgq")
+
+[node name="bg" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="lbl_name" type="Label" parent="CenterContainer/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+label_settings = SubResource("LabelSettings_kvrgq")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/MarginContainer/PanelContainer/VBoxContainer"]
+
+[node name="hp_box" type="HBoxContainer" parent="CenterContainer/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="player" type="VBoxContainer" parent="CenterContainer/MarginContainer/PanelContainer/VBoxContainer/hp_box"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="p_label" type="Label" parent="CenterContainer/MarginContainer/PanelContainer/VBoxContainer/hp_box/player"]
+text = "Você"
+
+[node name="player_hp" type="ProgressBar" parent="CenterContainer/MarginContainer/PanelContainer/VBoxContainer/hp_box/player"]
+
+[node name="enemy" type="VBoxContainer" parent="CenterContainer/MarginContainer/PanelContainer/VBoxContainer/hp_box"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="e_label" type="Label" parent="CenterContainer/MarginContainer/PanelContainer/VBoxContainer/hp_box/enemy"]
+text = "Inimigo"
+
+[node name="enemy_hp" type="ProgressBar" parent="CenterContainer/MarginContainer/PanelContainer/VBoxContainer/hp_box/enemy"]
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/MarginContainer/PanelContainer/VBoxContainer"]
+
+[node name="buttons" type="GridContainer" parent="CenterContainer/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="btn_attack" type="Button" parent="CenterContainer/MarginContainer/PanelContainer/VBoxContainer/buttons"]
+text = "⚔️ Atacar"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="btn_negotiate" type="Button" parent="CenterContainer/MarginContainer/PanelContainer/VBoxContainer/buttons"]
+text = "🤝 Negociar"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="btn_items" type="Button" parent="CenterContainer/MarginContainer/PanelContainer/VBoxContainer/buttons"]
+text = "🎒 Itens"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="btn_flee" type="Button" parent="CenterContainer/MarginContainer/PanelContainer/VBoxContainer/buttons"]
+text = "🏃 Fugir"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="msg_label" type="Label" parent="CenterContainer/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[connection signal="pressed" from="CenterContainer/MarginContainer/PanelContainer/VBoxContainer/buttons/btn_attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/PanelContainer/VBoxContainer/buttons/btn_negotiate" to="." method="_on_negotiate_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/PanelContainer/VBoxContainer/buttons/btn_items" to="." method="_on_items_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/PanelContainer/VBoxContainer/buttons/btn_flee" to="." method="_on_flee_pressed"]
