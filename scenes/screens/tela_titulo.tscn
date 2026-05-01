@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://bwqof1x0ytdm7"]
 
+[ext_resource type="Texture2D" uid="uid://cf8x65akid7iw" path="res://scenes/screens/resource/images/IMG-20260501-WA0611.png" id="1_oah2h"]
 [ext_resource type="FontFile" uid="uid://sxooo8o3tyye" path="res://Qetod.ttf" id="1_sdjo8"]
+[ext_resource type="FontFile" path="res://scenes/screens/fonts/ï╩é╦é¼×▓Åæîâû│ù┐ö┼v7ïî.ttf" id="2_dw1oj"]
 [ext_resource type="StyleBox" uid="uid://crbypcgralbja" path="res://tres/recursos/new_style_box_flat.tres" id="2_kp1np"]
+[ext_resource type="FontFile" path="res://scenes/screens/fonts/Nippon Tech Condensed.otf" id="3_alfu1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kp1np"]
+font_size = 190
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_alfu1"]
 bg_color = Color(0.105882354, 0.105882354, 0.105882354, 1)
@@ -15,6 +19,8 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="Theme" id="Theme_alfu1"]
+default_font = ExtResource("3_alfu1")
+default_font_size = 40
 Button/styles/disabled = null
 Button/styles/hover = ExtResource("2_kp1np")
 Button/styles/normal = ExtResource("2_kp1np")
@@ -50,54 +56,86 @@ rotation = 0.00038992224
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/CenterContainer" unique_id=375486463]
-custom_minimum_size = Vector2(650, 500)
+custom_minimum_size = Vector2(650, 350)
 layout_mode = 2
-theme_override_constants/separation = 120
+theme_override_constants/separation = 250
 alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/CenterContainer/VBoxContainer" unique_id=1233928591]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_constants/separation = 2
 alignment = 1
 
-[node name="logo" type="TextureRect" parent="CenterContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=83261956]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=215234176]
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 120
 
-[node name="Label" type="Label" parent="CenterContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=233948100]
-custom_minimum_size = Vector2(400, 400)
+[node name="logo" type="TextureRect" parent="CenterContainer/CenterContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=83261956]
+z_index = 1
+custom_minimum_size = Vector2(100, 10)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 8
+texture = ExtResource("1_oah2h")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=2100218930]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=233948100]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("1_sdjo8")
-theme_override_font_sizes/font_size = 320
 text = "Rukongai"
 label_settings = SubResource("LabelSettings_kp1np")
 horizontal_alignment = 1
 
-[node name="botoes" type="VBoxContainer" parent="CenterContainer/CenterContainer/VBoxContainer" unique_id=1174828579]
-custom_minimum_size = Vector2(500, 200)
+[node name="Label2" type="Label" parent="CenterContainer/CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=730080213]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_dw1oj")
+theme_override_font_sizes/font_size = 50
+text = "流 魂 街"
+horizontal_alignment = 1
+
+[node name="botoes" type="VBoxContainer" parent="CenterContainer/CenterContainer/VBoxContainer" unique_id=1174828579]
+custom_minimum_size = Vector2(350, 350)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
 theme = SubResource("Theme_alfu1")
 alignment = 1
 
 [node name="start" type="Button" parent="CenterContainer/CenterContainer/VBoxContainer/botoes" unique_id=1855675787]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
 text = "Começar"
 
 [node name="opcoes" type="Button" parent="CenterContainer/CenterContainer/VBoxContainer/botoes" unique_id=510502148]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
 text = "Opções"
 
 [node name="creditos" type="Button" parent="CenterContainer/CenterContainer/VBoxContainer/botoes" unique_id=174607398]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
 text = "Créditos"
 
 [node name="sair" type="Button" parent="CenterContainer/CenterContainer/VBoxContainer/botoes" unique_id=790429489]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
 text = "Sair"

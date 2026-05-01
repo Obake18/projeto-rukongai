@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://bk6qlboaines0"
-path="res://.godot/imported/Qetod.ttf-b14272c92d5625f6a2c4e0a5b4804200.fontdata"
+uid="uid://crsmksdurbv2e"
+path="res://.godot/imported/Nippon Tech Condensed.otf-904ddbd40816ed70c3519209bfe49469.fontdata"
 
 [deps]
 
-source_file="res://scenes/Qetod.ttf"
-dest_files=["res://.godot/imported/Qetod.ttf-b14272c92d5625f6a2c4e0a5b4804200.fontdata"]
+source_file="res://scenes/screens/resource/fonts/Nippon Tech Condensed.otf"
+dest_files=["res://.godot/imported/Nippon Tech Condensed.otf-904ddbd40816ed70c3519209bfe49469.fontdata"]
 
 [params]
 
