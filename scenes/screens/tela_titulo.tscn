@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://bwqof1x0ytdm7"]
 
-[ext_resource type="Texture2D" uid="uid://cf8x65akid7iw" path="res://scenes/screens/resource/images/IMG-20260501-WA0611.png" id="1_oah2h"]
 [ext_resource type="FontFile" uid="uid://sxooo8o3tyye" path="res://Qetod.ttf" id="1_sdjo8"]
-[ext_resource type="FontFile" path="res://scenes/screens/fonts/ï╩é╦é¼×▓Åæîâû│ù┐ö┼v7ïî.ttf" id="2_dw1oj"]
 [ext_resource type="StyleBox" uid="uid://crbypcgralbja" path="res://tres/recursos/new_style_box_flat.tres" id="2_kp1np"]
-[ext_resource type="FontFile" path="res://scenes/screens/fonts/Nippon Tech Condensed.otf" id="3_alfu1"]
+[ext_resource type="FontFile" uid="uid://crsmksdurbv2e" path="res://scenes/screens/resource/fonts/Nippon Tech Condensed.otf" id="4_dw1oj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kp1np"]
 font_size = 190
@@ -19,7 +17,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="Theme" id="Theme_alfu1"]
-default_font = ExtResource("3_alfu1")
+default_font = ExtResource("4_dw1oj")
 default_font_size = 40
 Button/styles/disabled = null
 Button/styles/hover = ExtResource("2_kp1np")
@@ -68,23 +66,6 @@ size_flags_vertical = 0
 theme_override_constants/separation = 2
 alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=215234176]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 120
-
-[node name="logo" type="TextureRect" parent="CenterContainer/CenterContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=83261956]
-z_index = 1
-custom_minimum_size = Vector2(100, 10)
-layout_direction = 2
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 8
-texture = ExtResource("1_oah2h")
-expand_mode = 5
-stretch_mode = 4
-
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=2100218930]
 layout_mode = 2
 
@@ -103,7 +84,6 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("2_dw1oj")
 theme_override_font_sizes/font_size = 50
 text = "流 魂 街"
 horizontal_alignment = 1
