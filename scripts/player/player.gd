@@ -13,10 +13,10 @@ extends CharacterBody3D
 @export var max_look_speed := 1.0
 
 # Step system 
-@export var step_threshold := 0.50
+@export var step_threshold := 0.55
 @export var step_cooldown := 0.4
-@export var step_force := 9.0
-@export var friction := 8.0
+@export var step_force := 13.0
+@export var friction := 8.5
 
 # Sensor filtering
 @export var accel_smoothing := 0.2
@@ -172,7 +172,7 @@ func detect_step(accel: Vector3) -> bool:
 	var magnitude = accel.length()
 	
 	# Ignora acelerações muito fracas
-	if magnitude < 0.35:  
+	if magnitude < 0.20:  
 		return false
 	
 	var delta = magnitude - prev_magnitude

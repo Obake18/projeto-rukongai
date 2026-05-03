@@ -14,19 +14,20 @@ var enemy_max_hp := 15
 var player_turn := true
 
 # =========================
-# UI (referências da cena)
+# UI (referências corrigidas)
 # =========================
-@onready var lbl_name = $CenterContainer/MarginContainer/PanelContainer/VBoxContainer/lbl_name
 
-@onready var player_hp_bar = $CenterContainer/MarginContainer/PanelContainer/VBoxContainer/hp_box/player/player_hp
-@onready var enemy_hp_bar = $CenterContainer/MarginContainer/PanelContainer/VBoxContainer/hp_box/enemy/enemy_hp
+@onready var player_hp_bar = $CenterContainer/VBoxContainer/player/player_hp
+@onready var enemy_hp_bar = $CenterContainer/VBoxContainer/enemy/enemy_hp
 
-@onready var btn_attack = $CenterContainer/MarginContainer/PanelContainer/VBoxContainer/buttons/btn_attack
-@onready var btn_negotiate = $CenterContainer/MarginContainer/PanelContainer/VBoxContainer/buttons/btn_negotiate
-@onready var btn_items = $CenterContainer/MarginContainer/PanelContainer/VBoxContainer/buttons/btn_items
-@onready var btn_flee = $CenterContainer/MarginContainer/PanelContainer/VBoxContainer/buttons/btn_flee
+@onready var btn_attack = $CenterContainer/VBoxContainer/MarginContainer/buttons/btn_attack
+@onready var btn_negotiate = $CenterContainer/VBoxContainer/MarginContainer/buttons/btn_negotiate
+@onready var btn_items = $CenterContainer/VBoxContainer/MarginContainer/buttons/btn_items
+@onready var btn_flee = $CenterContainer/VBoxContainer/MarginContainer/buttons/btn_flee
 
-@onready var msg_label = $CenterContainer/MarginContainer/PanelContainer/VBoxContainer/msg_label
+@onready var msg_label = $CenterContainer/VBoxContainer/msg_label
+
+# (REMOVIDO lbl_name porque não existe na cena)
 
 # =========================
 # RECEBE YOUKAI
@@ -58,13 +59,14 @@ func _ready():
 # UPDATE UI
 # =========================
 func update_ui():
-	lbl_name.text = "👻 " + (youkai.name if youkai else "Desconhecido")
+	# segurança contra null (evita crash se mudar UI)
+	if player_hp_bar:
+		player_hp_bar.max_value = player_max_hp
+		player_hp_bar.value = player_hp
 	
-	player_hp_bar.max_value = player_max_hp
-	player_hp_bar.value = player_hp
-	
-	enemy_hp_bar.max_value = enemy_max_hp
-	enemy_hp_bar.value = enemy_hp
+	if enemy_hp_bar:
+		enemy_hp_bar.max_value = enemy_max_hp
+		enemy_hp_bar.value = enemy_hp
 
 # =========================
 # COMBATE
@@ -155,7 +157,7 @@ func end_battle(_victory):
 	queue_free()
 
 func disable_buttons():
-	btn_attack.disabled = true
-	btn_negotiate.disabled = true
-	btn_items.disabled = true
-	btn_flee.disabled = true
+	if btn_attack: btn_attack.disabled = true
+	if btn_negotiate: btn_negotiate.disabled = true
+	if btn_items: btn_items.disabled = true
+	if btn_flee: btn_flee.disabled = true
